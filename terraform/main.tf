@@ -25,3 +25,32 @@ module "sandbox" {
 
   account_customizations_name = "sandbox"
 }
+
+module "testing" {
+  source = "./modules/aft-account-request"
+
+  control_tower_parameters = {
+    AccountEmail              = "test@tribe.com"
+    AccountName               = "testing"
+    ManagedOrganizationalUnit = "Sandbox (ou-orbg-xdamoz2c)"
+    SSOUserEmail              = "test@tribe.com"
+    SSOUserFirstName          = "Test"
+    SSOUserLastName           = "Account"
+  }
+
+  account_tags = {
+    "Opportunity" = "true"
+    "ManagedBy" = "OpportunityPortal"
+  }
+
+  change_management_parameters = {
+    change_requested_by = "Opportunity Portal"
+    change_reason       = "Self-service account creation"
+  }
+
+  custom_fields = {
+    group = "non-prod"
+  }
+
+  account_customizations_name = "sandbox"
+}
